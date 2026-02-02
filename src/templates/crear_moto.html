@@ -1,0 +1,29 @@
+{% extends "fragments/base.html" %}
+
+{% block title %}Crear Moto{% endblock %}
+
+{% block content %}
+
+<h1>Añadir nueva moto</h1>
+
+<form action="/motos/crear" method="post" class="formulario">
+
+    <label>Marca:</label>
+    <input type="text" name="marca" required>
+
+    <label>Modelo:</label>
+    <input type="text" name="modelo" required>
+
+    <label>Año:</label>
+    <input type="number" name="año" required>
+
+    <label>¿Es nueva?</label>
+    <select name="nueva">
+        <option value="true">Sí</option>
+        <option value="false">No</option>
+    </select>
+
+    <button class="btn btn-primary" type="submit">Crear moto</button>
+</form>
+
+{% endblock %}

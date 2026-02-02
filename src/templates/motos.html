@@ -1,0 +1,58 @@
+{% extends "fragments/base.html" %}
+
+{% block title %}Listado de Motos{% endblock %}
+
+{% block content %}
+
+<h1 class="title-anim">Listado de Motos</h1>
+
+{% if ok %}
+<div class="alerta {{ ok }}">
+    {% if ok == 'creada' %} Moto creada correctamente.
+    {% elif ok == 'editada' %} Moto editada correctamente.
+    {% elif ok == 'eliminada' %} Moto eliminada correctamente.
+    {% endif %}
+</div>
+{% endif %}
+<form method="get" action="/motos" style="margin-bottom: 15px;">
+    <select name="orden" onchange="this.form.submit()">
+        <option value="id_asc" {% if orden == "id_asc" %}selected{% endif %}>ID ascendente</option>
+        <option value="id_desc" {% if orden == "id_desc" %}selected{% endif %}>ID descendente</option>
+
+        <option value="año_asc" {% if orden == "año_asc" %}selected{% endif %}>Año más antiguo</option>
+        <option value="año_desc" {% if orden == "año_desc" %}selected{% endif %}>Año más reciente</option>
+    </select>
+</form>
+
+
+<table class="tabla-series">
+    <tr>
+        <th>ID</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Año</th>
+        <th>Nueva</th>
+        <th>Operaciones</th>
+    </tr>
+
+    {% for moto in motos %}
+    <tr>
+        <td>{{ moto.id }}</td>
+        <td>{{ moto.marca }}</td>
+        <td>{{ moto.modelo }}</td>
+        <td>{{ moto.año }}</td>
+        <td>{{ "Sí" if moto.nueva else "No" }}</td>
+        <td>
+            <a class="btn btn-info" href="/motos/{{ moto.id }}">Ver</a>
+            <a class="btn btn-edit" href="/motos/editar/{{ moto.id }}">Editar</a>
+            <a class="btn btn-delete" href="/motos/eliminar/{{ moto.id }}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p style="margin-top: 20px;">
+    <a class="btn btn-primary" href="/motos/crear">Añadir nueva moto</a>
+</p>
+
+{% endblock %}

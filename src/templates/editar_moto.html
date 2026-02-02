@@ -1,0 +1,33 @@
+{% extends "fragments/base.html" %}
+
+{% block title %}Editar Moto{% endblock %}
+
+{% block content %}
+
+<h1>Editar moto</h1>
+
+<form action="/motos/editar/{{ moto.id }}" method="post" class="formulario">
+
+    <label>Marca:</label>
+    <input type="text" name="marca" value="{{ moto.marca }}" required>
+
+    <label>Modelo:</label>
+    <input type="text" name="modelo" value="{{ moto.modelo }}" required>
+
+    <label>Año:</label>
+    <input type="number" name="año" value="{{ moto.año }}" required>
+
+    <label>¿Es nueva?</label>
+    <select name="nueva">
+        <option value="true" {% if moto.nueva %}selected{% endif %}>Sí</option>
+        <option value="false" {% if not moto.nueva %}selected{% endif %}>No</option>
+    </select>
+
+    <button class="btn btn-primary" type="submit">Guardar cambios</button>
+</form>
+
+<p style="margin-top: 20px;">
+    <a class="btn btn-info" href="/motos">Volver al listado</a>
+</p>
+
+{% endblock %}

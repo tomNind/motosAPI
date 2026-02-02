@@ -1,0 +1,24 @@
+name: fastapi-motos
+
+services:
+  fastapi-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi-motos-app
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - fastapi-db
+
+  fastapi-db:
+    image: postgres
+    container_name: fastapi-motos-db
+    environment:
+      POSTGRES_ROOT_PASSWORD: quevedo
+      POSTGRES_DB: motosdb
+      POSTGRES_USER: quevedo
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"

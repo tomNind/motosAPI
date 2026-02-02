@@ -1,0 +1,15 @@
+name: motos-mysql
+
+services:
+  db-mysql:
+    image: mysql:8.0
+    container_name: db-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: quevedo
+      MYSQL_DATABASE: motosdb
+      MYSQL_USER: quevedo
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+
