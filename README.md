@@ -91,7 +91,7 @@ Seleccionar el repositorio del proyecto MotosAPI
 Acceder a la pantalla de configuración del servicio
 
 Copiar de la base de datos url interna crear variable de entorno con la url.
-También port
+Si se hace con Docker poner PORT y el puerto que se use en el Dockerfile
 
 # 7. Despliegue de la aplicación
 
